@@ -1,4 +1,4 @@
-# flutter_bootcamp
+# Edspert.id Tutoring App
 
 Flutter Bootcamp with Edspert: Developing online tutoring app using Flutter   
 
