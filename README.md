@@ -1,6 +1,6 @@
-# flutter_bootcamp
+# Edspert.id Tutoring App
 
-A new Flutter project.
+Flutter Bootcamp with Edspert: Developing basic tutoring app using Flutter.   
 
 ## Getting Started
 
