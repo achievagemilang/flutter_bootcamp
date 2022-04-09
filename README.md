@@ -1,6 +1,6 @@
 # flutter_bootcamp
 
-A new Flutter project.
+Flutter Bootcamp with Edspert: Developing online tutoring app using Flutter   
 
 ## Getting Started
 
