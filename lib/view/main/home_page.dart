@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bootcamp/constant/r.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+
+import '../../model/album.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +15,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Album? album;
+  fetchData() async {
+    final result = await http
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+    if (result.statusCode == 200) {
+      final json = jsonDecode(result.body);
+      album = Album.fromJson(json);
+      setState(() {});
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Oopss.. Ada masalah!")));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +44,10 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
+              if (album != null)
+                Text(album!.title!)
+              else
+                Text("Belum ada data."),
               Padding(
                 padding: const EdgeInsets.all(21.0),
                 child: Row(

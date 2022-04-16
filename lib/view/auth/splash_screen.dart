@@ -1,7 +1,11 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bootcamp/controller/AuthProviderController.dart';
 import 'package:flutter_bootcamp/view/auth/login_page.dart';
+import 'package:flutter_bootcamp/view/main/main_page.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -11,27 +15,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  void goToNextPage() {
-    Timer(
-      const Duration(seconds: 3),
-      () {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const LoginPage(),
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    goToNextPage();
-  }
-
   @override
   Widget build(BuildContext context) {
+    Provider.of<AuthProviderController>(context, listen: false)
+        .directAfterSplashScreen(context);
     return Scaffold(
       body: Center(
         child: Image.asset(
